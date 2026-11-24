@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#5b46d8" />
+    <title>OCR da Lala</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <span class="eyebrow">100% no seu navegador</span>
+        <h1>OCR da Lala</h1>
+        <p>Solte uma imagem e transforme texto impresso ou escrito em texto copiável.</p>
+      </header>
+
+      <section class="workspace" aria-label="Leitura de imagem">
+        <label id="drop-zone" class="drop-zone" for="file-input">
+          <input id="file-input" type="file" accept="image/*" multiple hidden />
+          <span class="upload-icon" aria-hidden="true">⌁</span>
+          <strong>Arraste imagens aqui</strong>
+          <span>ou clique para selecionar arquivos</span>
+          <small>PNG, JPG, WEBP e outros formatos de imagem</small>
+        </label>
+
+        <div id="queue" class="queue" aria-live="polite"></div>
+
+        <div id="progress-wrap" class="progress-wrap" hidden>
+          <div class="progress-label"><span id="progress-text">Preparando...</span><span id="progress-value">0%</span></div>
+          <div class="progress"><i id="progress-bar"></i></div>
+        </div>
+
+        <div class="actions">
+          <select id="language" aria-label="Idioma do texto">
+            <option value="por">Português</option>
+            <option value="eng">Inglês</option>
+            <option value="spa">Espanhol</option>
+          </select>
+          <button id="read-button" class="primary" disabled>Ler texto</button>
+        </div>
+      </section>
+
+      <section class="result-section">
+        <div class="section-heading">
+          <div><span class="eyebrow">Resultado</span><h2>Texto reconhecido</h2></div>
+          <button id="copy-button" class="secondary" disabled>Copiar texto</button>
+        </div>
+        <textarea id="result" placeholder="O texto extraído aparecerá aqui. Você também pode editá-lo." spellcheck="true"></textarea>
+        <p id="status" class="status">Nenhuma imagem selecionada.</p>
+      </section>
+
+      <section class="history-section">
+        <div class="section-heading">
+          <div><span class="eyebrow">Neste dispositivo</span><h2>Histórico em cache</h2></div>
+          <button id="clear-history" class="secondary danger">Limpar histórico</button>
+        </div>
+        <div id="history" class="history"><p class="empty">Ainda não há leituras salvas.</p></div>
+      </section>
+    </main>
+    <footer>Suas imagens não são enviadas para um servidor. O OCR e o cache ficam neste navegador.</footer>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
